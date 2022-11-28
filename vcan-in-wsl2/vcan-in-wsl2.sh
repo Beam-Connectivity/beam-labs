@@ -1,5 +1,6 @@
 # required packages
-sudo apt install -y libelf-dev dwarves
+sudo apt install -y libelf-dev dwarves flex bison libssl-dev \
+    libncurses-dev
  
 # The below few connamds will checkout the 1GB default kernel
 git clone https://github.com/microsoft/WSL2-Linux-Kernel
@@ -23,13 +24,13 @@ make -j4
 # launch it when we start wsl2.
 # Change the path below to where you want to store it
 cp vmlinux /mnt/c/Users/<USER>/
-cat >> /mnt/c/Users/<USER>/.wslconfig << ENDL
-echo kernel=C:\\Users\\<USER>\\vmlinux
+cat >> /mnt/c/Users/<USER>/.wslconfig << "ENDL"
+kernel=C:\\Users\\<USER>\\vmlinux
 ENDL
 
 # We'll need to restart WSL to use the new kernel
 # In the command prompt enter the next couple of commands
-wsl --shutdown
+# wsl --shutdown
 # Wait 10 seconds or check everything is stopped with
-wsl --list -v
+# wsl --list -v
 
