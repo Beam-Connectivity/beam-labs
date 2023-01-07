@@ -25,7 +25,7 @@ make -j4
 
 #make modules and install them
 make modules
-make modules_install
+sudo make modules_install
 
 # We'll need to store our custom kernel in the Windows environment and 
 # launch it when we start wsl2.
