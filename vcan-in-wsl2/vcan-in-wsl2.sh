@@ -1,6 +1,9 @@
+# update
+sudo apt-get update
+
 # required packages
 sudo apt install -y libelf-dev dwarves flex bison libssl-dev \
-    libncurses-dev
+    libncurses-dev bc make build-essential
  
 # The below few connamds will checkout the 1GB default kernel
 git clone https://github.com/microsoft/WSL2-Linux-Kernel
@@ -20,11 +23,16 @@ make menuconfig
 #build the kernel
 make -j4
 
+#make modules and install them
+make modules
+make modules_install
+
 # We'll need to store our custom kernel in the Windows environment and 
 # launch it when we start wsl2.
 # Change the path below to where you want to store it
 cp vmlinux /mnt/c/Users/<USER>/
 cat >> /mnt/c/Users/<USER>/.wslconfig << "ENDL"
+[wsl2]
 kernel=C:\\Users\\<USER>\\vmlinux
 ENDL
 
