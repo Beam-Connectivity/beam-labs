@@ -10,7 +10,7 @@ cat /proc/config.gz | gunzip > .config
 make prepare modules_prepare
  
 # The next command brings up the kernel configuration.
-# In here we can select vcan and slcan. You can also enable other modules you
+# In here we can select vcan and slcan.(PRESS M for Module support). You can also enable other modules you
 # require and test if they work. The link below helps locate modules in the
 # menu config display. For wsl v5.10.102 it was located at:
 # Networking support -> CAN bus subsystem support -> CaN Device Drivers -> vcan
@@ -19,12 +19,14 @@ make menuconfig
 
 #build the kernel
 make -j4
-
+sudo make module_install
+sudo ln -s /lib/modules/5.10.16.3-microsoft-standard-WSL2+/ /lib/modules/5.10.16.3-microsoft-standard-WSL2
 # We'll need to store our custom kernel in the Windows environment and 
 # launch it when we start wsl2.
 # Change the path below to where you want to store it
 cp vmlinux /mnt/c/Users/<USER>/
 cat >> /mnt/c/Users/<USER>/.wslconfig << "ENDL"
+[wsl2]
 kernel=C:\\Users\\<USER>\\vmlinux
 ENDL
 
