@@ -1,4 +1,5 @@
 # required packages
+sudo apt update -y && sudo apt upgrade -y
 sudo apt install -y libelf-dev flex bison libssl-dev libncurses-dev bc
 
 # The v1.21 of dwarves (and its dependency pahole) is required. Download it in your preferred directory and install it
