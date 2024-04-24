@@ -1,5 +1,8 @@
 # #!/bin/bash
 
+# Exit if an error occurs
+set -e
+
 # Get the directory of the script
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -7,7 +10,7 @@ SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo !!!!!!!!!!!!!!!!!!!!!!!!!
 echo Install required packages
 echo !!!!!!!!!!!!!!!!!!!!!!!!!
-sudo apt update -y && sudo apt upgrade -y
+sudo apt update -y
 sudo apt install -y libelf-dev flex bison libssl-dev libncurses-dev bc build-essential make
 sudo apt install -y --no-install-recommends wslu
 
@@ -25,7 +28,7 @@ sudo apt install ./dwarves_1.21-0ubuntu1~20.04.1_amd64.deb
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 echo Clone and checkout the WSL2 Linux Kernel
 echo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-if [[ ! -d "/WSL2-Linux-Kernel/" ]]; then
+if [[ ! -d "./WSL2-Linux-Kernel/" ]]; then
     git clone git@github.com:microsoft/WSL2-Linux-Kernel.git --shallow-since=2022-07-30
 fi
 cd WSL2-Linux-Kernel/
@@ -59,4 +62,4 @@ cd $WIN_USER
 touch .wslconfig
 cd $SCRIPT_PATH
 cp wsl-reboot.ps1 $WIN_USER
-echo Done! Now open a Windows powershell and launch the wsl-reboot.ps1 script to reboot WSL with the custom linux kernel.
+echo Done! Now close this terminal, open a Windows powershell and launch the wsl-reboot.ps1 script to reboot WSL with the custom linux kernel.
