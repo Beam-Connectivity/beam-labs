@@ -28,6 +28,8 @@ From the user home directory, run the `wsl-reboot.ps1` script:
 ./wsl-reboot.ps1
 ```
 
+At this point, you might also need to reboot you machine to enable WSL to use the new linux kernel.
+
 At completion, open a new wsl terminal and type `uname -a`. If the process was successful, you should see the `5.15.57.1-microsoft-standard-WSL2+` in the output.
 
 Finally, launch the following command to add module from the linux kernel:
